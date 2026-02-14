@@ -1,16 +1,36 @@
-**This repository explores how reinforcement learning behaviour changes when reward definitions change.**
+**# Reward Design Alters Learned Behaviour**
 
 
 
-**Same agent.**
-
-**Same environment.**
-
-**Different incentives.**
+**This experiment studies how reinforcement learning agents change behaviour when only the reward definition changes.**
 
 
 
-**The experiment demonstrates that agents optimize reward functions rather than intended goals.**
+**Same algorithm**
+
+**Same environment**
+
+**Different objective → different behaviour**
+
+
+
+**## Key Observation**
+
+**The agent optimizes the reward specification rather than the intended task.**
+
+
+
+**## Result**
+
+**!\[Result](result.png)**
+
+
+
+**The number of steps required to reach the goal varies significantly depending on reward design, showing how incentive alignment determines behaviour.**
+
+
+
+**This demonstrates a core challenge in responsible AI: correct learning does not imply correct behaviour.**
 
 
 
