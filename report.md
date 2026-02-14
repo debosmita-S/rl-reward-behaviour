@@ -1,31 +1,28 @@
-### **Learning Behaviour Depends More on Objective Than Algorithm**
+### **Reward Design and Reliability in Learning Agents**
 
 
 
-**I implemented a simple grid-world reinforcement learning agent and trained the same algorithm under four reward definitions.**
+**I implemented a grid-world reinforcement learning agent and trained the same algorithm under multiple reward definitions.**
 
 
 
-**Despite identical learning procedure, the behaviour differed significantly:**
+**Initially, different incentives produced very different behaviours — efficient navigation, risk-averse movement, and even avoidance of the goal when the reward was incorrect.**
 
 
 
-* **When only success was rewarded, the agent learned inefficient wandering policies.**
-* **When a small step penalty was introduced, the agent learned structured shortest-path behaviour.**
-* **When penalties increased, behaviour became risk-averse.**
-* **When the reward sign was reversed, the agent actively avoided the goal state.**
+**To study reliability, I introduced environment noise where the agent’s action sometimes changed randomly.**
 
 
 
-**This shows the agent consistently optimized the reward specification rather than the intended task.**
+**Under uncertainty, well-defined rewards degraded gradually, but incorrect rewards caused complete failure. The agent did not become less intelligent — the objective simply became unstable.**
 
 
 
-**The experiment highlights a key challenge in decision-making AI systems:**
-
-**performance depends more on how objectives are defined than on model capability.**
+**This suggests that behaviour reliability depends more on incentive design than on learning capability. Noise exposes misalignment rather than causing it.**
 
 
 
-**Even a correct learning algorithm can produce undesirable behaviour if incentives are misaligned.**
+**The experiment highlights a key challenge in responsible AI systems: correctness of learning does not guarantee correctness of behaviour.**
+
+
 
