@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import random
 
@@ -77,21 +78,37 @@ def run_episode():
 
     return path
 
+def evaluate():
+    state = (0,0)
+    steps=0
+    for _ in range(50):
+        action = np.argmax(Q[state[0],state[1]])
+        state = move(state,ACTIONS[action])
+        steps+=1
+        if state==GOAL:
+            return steps
+    return 50
 
+
+results={}
 
 for r in ["goal_only","step_penalty","harsh_penalty","wrong_reward"]:
     Q[:] = 0
     train(r)
 
-    print("\n====",r,"====")
-
     path = run_episode()
+    steps = evaluate()
+    results[r]=steps
+
+    print("\n====",r,"====")
+    print("Steps to reach goal:",steps)
     print("Path taken:", path)
 
-    print("Policy map:")
-    for i in range(SIZE):
-        row=[]
-        for j in range(SIZE):
-            row.append(np.argmax(Q[i,j]))
-        print(row)
 
+plt.bar(results.keys(), results.values())
+plt.ylabel("Steps needed to reach goal")
+plt.title("Effect of Reward Design on Agent Behaviour")
+plt.xticks(rotation=30)
+plt.tight_layout()
+plt.savefig("result.png")
+plt.show()
