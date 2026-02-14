@@ -5,13 +5,20 @@ import random
 SIZE = 6
 GOAL = (5,5)
 
+SLIP_PROB = 0.2   # 20% chance action changes
+
 ACTIONS = [(0,1),(1,0),(0,-1),(-1,0)]
 
 def move(pos, action):
+    # sometimes the agent slips and a random action happens
+    if random.random() < SLIP_PROB:
+        action = random.choice(ACTIONS)
+
     x,y = pos
     dx,dy = action
     nx,ny = max(0,min(SIZE-1,x+dx)), max(0,min(SIZE-1,y+dy))
     return (nx,ny)
+
 
 Q = np.zeros((SIZE,SIZE,4))
 alpha = 0.1
@@ -100,7 +107,8 @@ for r in ["goal_only","step_penalty","harsh_penalty","wrong_reward"]:
     steps = evaluate()
     results[r]=steps
 
-    print("\n====",r,"====")
+    print("\n====",r,"(noisy environment) ====")
+
     print("Steps to reach goal:",steps)
     print("Path taken:", path)
 
